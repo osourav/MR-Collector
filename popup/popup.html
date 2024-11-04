@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <link href="./../assets/icons/css/font.css" rel="stylesheet" type="text/css" />
+   <link href="./../assets/icons/css/icon.css" rel="stylesheet" type="text/css" />
+   <link href="./../popup/css/popup.css" rel="stylesheet" type="text/css" />
+   <link href="./../popup/css/floatingWindow.css" rel="stylesheet" type="text/css" />
+   
+   <script defer src="./../g.js"></script>
+   <script defer src="./../utils.js"></script>
+   <script defer src="./../querySelector.js"></script>
+   <script defer src="./popup.js"></script>
+   <script defer src="./eventListener.js"></script>
+
+</head>
+<body>
+
+   <!----------------------------------------------------------------
+                                 Header
+   ------------------------------------------------------------------>
+   <header>
+      <div class="logo"><img src="./../assets/imgs/logo.png" alt="extension icon"></div>
+      <section>
+         <p>Rewards Collector</p>
+         <b>
+            <i class="sbi-copyright"></i>
+            <span class="first">else</span>
+            <span class="second">sourav</span>
+            <span class="third"><small>2024</small></span>
+         </b>
+      </section>
+      <div class="buttons">
+         <div id="reload">
+            <i class="sbi-refresh"></i>
+         </div>
+         <div id="stop">
+            <i class="sbi-stop"></i>
+         </div>
+      </div>
+   </header>
+
+   <!----------------------------------------------------------------
+                     Both (Auto and Manually)
+   ------------------------------------------------------------------>
+   <main>
+      <div class="basic-grid">
+         <div class="take-inp only-switch only-main">
+            <span>Online Control</span>
+            <input type="checkbox" name="online_control" id="onlineControl" class="inp-checkbox">
+         </div>
+         
+         <div class="take-inp only-switch">
+            <span>Auto Complete</span>
+            <input type="checkbox" name="auto_complete" id="autoComplete" class="inp-checkbox multi auto">
+         </div>
+      </div>
+
+      <span class="br-tag"></span>
+      
+      <div class="basic-grid auto auto-complete-inputs">
+         <div class="take-inp only-switch" style="--d:0ms">
+            <span>PC Search</span>
+            <input type="checkbox" name="auto_pc_search" id="autoPcSearch" class="inp-checkbox multi auto">
+         </div>
+         <div class="take-inp only-switch" style="--d:1ms">
+            <span>Mobile Search</span>
+            <input type="checkbox" name="auto_mobile_search" id="autoMobileSearch" class="inp-checkbox multi auto">
+         </div>
+         <div class="take-inp only-switch" style="--d:2ms">
+            <span>Daily Event</span>
+            <input type="checkbox" name="auto_daily_event" id="autoDailyEvent" class="inp-checkbox multi auto">
+         </div>
+         <div class="take-inp only-switch" style="--d:3ms">
+            <span>Banner Event</span>
+            <input type="checkbox" name="auto_banner_event" id="autoBannerEvent" class="inp-checkbox multi auto">
+         </div>
+         <div class="take-inp only-switch" style="--d:4ms">
+            <span>Recheck at Last</span>
+            <input type="checkbox" name="auto_recheck" id="autoRecheck" class="inp-checkbox multi auto">
+         </div>
+         <div class="take-inp only-switch" style="--d:5ms">
+            <span>Auto Start</span>
+            <input type="checkbox" name="auto_start" id="autoStart" class="inp-checkbox multi auto">
+         </div>
+         <div class="take-inp only-switch" style="--d:6ms">
+            <span>Auto Close</span>
+            <input type="checkbox" name="auto_close" id="autoClose" class="inp-checkbox multi auto">
+         </div>
+         <div class="take-inp btn" style="--d:7ms">
+            <button id="updateAutoComplete">UPDATE</button>
+         </div>
+      </div>
+
+
+      <div class="basic-grid auto manually-search-inputs">
+         <div class="take-inp one-line two-input" style="--d:0ms">
+            <section>
+               <div class="take-num">
+                  <p>PC Search</p>
+                  <div class="inp">
+                     <button class="dec"><i class="sbi-minus-square"></i></button>
+                     <input value="0" type="number" name="pc_search_limit" inputmode="numeric" id="pcLimit" class="inp-limit multi num">
+                     <button class="inc"><i class="sbi-plus-square"></i></button>
+                  </div>
+               </div>
+               <input type="checkbox" name="pc_search" id="pcSearch" class="inp-checkbox multi num">
+            </section>
+         </div>
+
+         <div class="take-inp one-line two-input" style="--d:1ms">
+            <section>
+               <div class="take-num">
+                  <p>Mobile Search</p>
+                  <div class="inp">
+                     <button class="dec"><i class="sbi-minus-square"></i></button>
+                     <input value="0" type="number" name="mobile_search_limit" inputmode="numeric" id="mobileLimit" class="inp-limit multi num">
+                     <button class="inc"><i class="sbi-plus-square"></i></button>
+                  </div>
+               </div>
+               <input type="checkbox" name="mobile_search" id="mobileSearch" class="inp-checkbox multi num">
+            </section>
+         </div>
+
+         <div class="take-inp only-switch" style="--d:2ms">
+            <span>Daily Event</span>
+            <input type="checkbox" name="daily_event" id="dailyEvent" class="inp-checkbox multi">
+         </div>
+         <div class="take-inp only-switch" style="--d:3ms">
+            <span>Banner Event</span>
+            <input type="checkbox" name="banner_event" id="bannerEvent" class="inp-checkbox multi">
+         </div>
+      </div>
+
+      <span class="br-tag"></span>
+
+      <div class="basic-grid">
+         <div class="take-inp one two-input">
+            <span>Search Delay</span>
+            <section>
+               <div class="take-num">
+                  <div class="inp">
+                     <button class="dec"><i class="sbi-minus-square"></i></button>
+                     <input value="0" type="number" name="search_delay_limit" inputmode="numeric" id="delayTime" class="inp-limit multi">
+                     <button class="inc"><i class="sbi-plus-square"></i></button>
+                  </div>
+               </div>
+            </section>
+         </div>
+
+         <div class="take-inp one two-input">
+            <span>If !Search Wait</span>
+            <section>
+               <div class="take-num">
+                  <div class="inp">
+                     <button class="dec"><i class="sbi-minus-square"></i></button>
+                     <input value="0" type="number" name="not_search_delay_limit" inputmode="numeric" id="notSearchDelay" class="inp-limit multi">
+                     <button class="inc"><i class="sbi-plus-square"></i></button>
+                  </div>
+               </div>
+            </section>
+         </div>
+      </div>
+   </main>
+
+   <!----------------------------------------------------------------
+                           Floating Window
+   ------------------------------------------------------------------>
+   <div id="floatingWindow" class="active">
+      <div class="form window">
+         <div id="offOnlineControl"><i class="sbi-close"></i></div>
+         <form>
+            <div class="title">
+               <span>Connect</span>
+            </div>
+            <div class="form-input two">
+               <i class="sbi-user1"></i>
+               <input type="text" id="accountName" spellcheck="false" autocomplete="off" placeholder="ID First Name" required />
+            </div>
+            <div class="form-input two">
+               <i class="sbi-user-secret"></i>
+               <input type="text" id="username" spellcheck="false" autocomplete="off" placeholder="Admin Username" required />
+            </div>
+            <div class="form-input pass">
+               <i class="sbi-key1"></i>
+               <input type="password" id="password" placeholder="Admin Password" required />
+               <div class="eye">
+                  <i class="sbi-eye1"></i>
+                  <i class="sbi-eye-slash"></i>
+               </div>
+            </div>
+            <div class="form-submit">
+               <button type="submit" id="submit">SUBMIT</button>
+            </div>
+         </form>
+      </div>
+
+      <div class="alert window">
+          <p id="alertTitle">Alert</p>
+         <div id="alertMessage">Your Alert Message Hare</div>
+         <div class="buttons">
+            <div class="btn" id="hideAlert">Okay</div>
+            <div class="btn" id="optionalBtn">No</div>
+         </div>
+      </div>
+
+      <div class="loading window active">
+         <div class="center">
+            <div class="wave" style="--delay: 0"></div>
+            <div class="wave" style="--delay: 0.1"></div>
+            <div class="wave" style="--delay: 0.2"></div>
+            <div class="wave" style="--delay: 0.3"></div>
+            <div class="wave" style="--delay: 0.4"></div>
+            <div class="wave" style="--delay: 0.5"></div>
+            <div class="wave" style="--delay: 0.6"></div>
+            <div class="wave" style="--delay: 0.7"></div>
+            <div class="wave" style="--delay: 0.8"></div>
+            <div class="wave" style="--delay: 0.9"></div>
+         </div>
+      </div>
+   </div>
+
+</body>
+</html>
